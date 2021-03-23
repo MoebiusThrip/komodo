@@ -104,6 +104,7 @@ class Komodo(list):
 
 
 # set up instance
+# import komodos as kom; komo = kom.komodo;
 komodo = Komodo('https://ovarit.com')
 
 
