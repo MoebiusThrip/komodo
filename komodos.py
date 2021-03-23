@@ -47,6 +47,9 @@ class Komodo(list):
             self.soup
         """
 
+        # print status
+        print('scraping {} for comments...'.format(self.url))
+
         # make soup from request
         request = requests.get(self.url)
         soup = Soup(request.content, features='html.parser')
@@ -99,6 +102,9 @@ class Komodo(list):
             # print
             print('\n\n\n\ncomment {} of {}...\n'.format(index, len(comments)))
             print(text)
+
+        # print total
+        print('\ntotal comments with {}: {}'.format(search, len(comments)))
 
         return None
 
