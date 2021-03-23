@@ -100,11 +100,11 @@ class Komodo(list):
             text = ' '.join(highlights)
 
             # print
-            print('\n\n\n\ncomment {} of {}...\n'.format(index, len(comments)))
+            print('\n\n\n\npost {} of {}...\n'.format(index, len(comments)))
             print(text)
 
         # print total
-        print('\ntotal comments with {}: {}'.format(search, len(comments)))
+        print('\ntotal posts with {}: {}'.format(search, len(comments)))
 
         return None
 
