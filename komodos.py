@@ -86,25 +86,40 @@ class Komodo(list):
         """
 
         # get subset of texts with word
-        comments = [comment for comment in self if search.lower() in comment.lower()]
+        posts = [post for post in self if search.lower() in post.lower()]
 
         # reverse to get most recent last
-        comments.reverse()
+        posts.reverse()
 
-        # print each comment, highlighting word
-        for index, comment in enumerate(comments):
+        # begin grand comment total
+        grand = 0
 
-            # highlight the word
-            highlighting = lambda word: '\n\n[!!!  *** {} ***   !!!]\n\n'.format(word) if search.lower() in word.lower() else word
-            highlights = [highlighting(word) for word in comment.split(' ')]
-            text = ' '.join(highlights)
+        # print each post, highlighting word
+        for index, post in enumerate(posts):
 
-            # print
-            print('\n\n\n\npost {} of {}...\n'.format(index, len(comments)))
-            print(text)
+            # delimiter is not unicode!  (not plain hyphen)
+            delimiter = '[–]'
 
-        # print total
-        print('\ntotal posts with {}: {}'.format(search, len(comments)))
+            # split the post into comments and go through each
+            comments = post.split(delimiter)
+            total = len([comment for comment in comments if search.lower() in comment.lower()])
+            grand += total
+            for indexii, comment in enumerate(comments):
+
+                # check for presence of word
+                if search.lower() in comment:
+
+                    # highlight the word
+                    highlighting = lambda word: '\n\n[!!!  *** {} ***   !!!]\n\n'.format(word) if search.lower() in word.lower() else word
+                    highlights = [highlighting(word) for word in comment.split(' ')]
+                    text = ' '.join(highlights)
+
+                    # print
+                    print('\n\n\n\ncomment {} of {} in post {} of {}...\n'.format(indexii, len(comments), index, len(posts)))
+                    print(text)
+
+        # print grand total total
+        print('\n{} total comments with -{}- over {} posts'.format(grand, search, len(posts)))
 
         return None
 
