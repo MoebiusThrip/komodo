@@ -97,7 +97,7 @@ class Komodo(list):
         # print each post, highlighting word
         for index, post in enumerate(posts):
 
-            # delimiter is not unicode!  (not plain hyphen)
+            # delimiter is not unicode!  (not plain hyphen. m-dash?)
             delimiter = '[–]'
 
             # split the post into comments and go through each
@@ -125,7 +125,7 @@ class Komodo(list):
 
 
 # set up instance
-# import komodos as kom; komo = kom.komodo;
+# import komodos as kom; komodo = kom.komodo;
 komodo = Komodo('https://ovarit.com')
 
 
